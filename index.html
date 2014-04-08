@@ -28,37 +28,189 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+          <h1>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Hints for wrapping the webapp in an Android app.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>Daniel Zimmel <a href="mailto:zimmel@coll.mpg.de">zimmel@coll.mpg.de</a> 2014.</p>
+
+<h1>
+<a name="apache-cordova-setup" class="anchor" href="#apache-cordova-setup"><span class="octicon octicon-link"></span></a>Apache Cordova: Setup</h1>
+
+<p>Notes for Linux (Debian/Ubuntu) and Cordova 3.4</p>
+
+<h2>
+<a name="install-java--ant" class="anchor" href="#install-java--ant"><span class="octicon octicon-link"></span></a>Install Java &amp; Ant</h2>
+
+<p>apt-get ...</p>
+
+<h2>
+<a name="compile-nodejs" class="anchor" href="#compile-nodejs"><span class="octicon octicon-link"></span></a>compile NodeJS</h2>
+
+<pre><code>            sudo apt-get update
+            sudo apt-get install g++ curl libssl-dev
+
+            wget http://nodejs.org/dist/node-latest.tar.gz
+            tar -xzvf node-latest.tar.gz
+            cd node-v0.10.24
+            ./configure
+            make
+            sudo make install
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h2>
+<a name="install-cordova-with-nodejs" class="anchor" href="#install-cordova-with-nodejs"><span class="octicon octicon-link"></span></a>install Cordova with NodeJS</h2>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<pre><code> sudo npm install -g cordova
+</code></pre>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p><a href="http://cordova.apache.org/docs/en/3.4.0/guide_cli_index.md.html#The%20Command-Line%20Interface">Cordova Command Line Interface Docs</a></p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<h2>
+<a name="install-latest-android-sdk" class="anchor" href="#install-latest-android-sdk"><span class="octicon octicon-link"></span></a>install latest Android SDK</h2>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>[<a href="https://developer.android.com/sdk/index.html#download">https://developer.android.com/sdk/index.html#download</a>]</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<p>unzip to <em>~/android-development/adt-bundle/</em></p>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<h2>
+<a name="setup-path-in-bashrc" class="anchor" href="#setup-path-in-bashrc"><span class="octicon octicon-link"></span></a>setup PATH in .bashrc</h2>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<p>write to .bashrc:</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>   export PATH=${PATH}:~/android-development/adt-bundle/sdk/platform-tools:~/android-development/adt-bundle/sdk/tools
+</code></pre>
+
+<p>will be active on new bash session, or do <code>source ~/.bashrc</code></p>
+
+<h2>
+<a name="setup-android-sdk" class="anchor" href="#setup-android-sdk"><span class="octicon octicon-link"></span></a>Setup Android SDK</h2>
+
+<p>start Eclipse in the ADT directory:</p>
+
+<pre><code>        ./eclipse
+
+        (Workspace: e.g. "android-development")
+</code></pre>
+
+<p>go to Window-&gt;Android SDK-Manager-&gt;Tools-&gt;Manage AVDs</p>
+
+<p>create new AVD emulator for testing purposes (e.g. select Nexus 7 in AVD Device Manager)</p>
+
+<p>(TODO: test Genymotion Android Emulator --&gt; much faster?)</p>
+
+<h1>
+<a name="apache-cordova-start-new-project" class="anchor" href="#apache-cordova-start-new-project"><span class="octicon octicon-link"></span></a>Apache Cordova: start new Project</h1>
+
+<p>go to your Android workspace and:</p>
+
+<pre><code>cordova create hello com.example.hello HelloWorld   
+cordova platform add android
+</code></pre>
+
+<h2>
+<a name="get-cordova-inappbrowser-plugin" class="anchor" href="#get-cordova-inappbrowser-plugin"><span class="octicon octicon-link"></span></a>Get Cordova inappbrowser plugin</h2>
+
+<pre><code>$ cordova plugin add https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git
+$ cordova plugin rm org.apache.cordova.core.inappbrowser
+</code></pre>
+
+<h2>
+<a name="build" class="anchor" href="#build"><span class="octicon octicon-link"></span></a>Build</h2>
+
+<pre><code>cordova build 
+</code></pre>
+
+<p>APK is built in subdirectory.</p>
+
+<p>Test your app in emulator:</p>
+
+<pre><code>     cordova emulate android
+</code></pre>
+
+<p>Test your app in device (plugin to USB):</p>
+
+<pre><code>     cordova run android
+</code></pre>
+
+<h1>
+<a name="example-wwwindexhtml" class="anchor" href="#example-wwwindexhtml"><span class="octicon octicon-link"></span></a>Example www/index.html</h1>
+
+<pre><code>&lt;pre&gt;
+    &lt;!DOCTYPE html&gt;
+    &lt;!--
+            Licensed to the Apache Software Foundation (ASF) under one
+            or more contributor license agreements.  See the NOTICE file
+            distributed with this work for additional information
+            regarding copyright ownership.  The ASF licenses this file
+            to you under the Apache License, Version 2.0 (the
+            "License"); you may not use this file except in compliance
+            with the License.  You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+            Unless required by applicable law or agreed to in writing,
+            software distributed under the License is distributed on an
+            "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+            KIND, either express or implied.  See the License for the
+            specific language governing permissions and limitations
+            under the License.
+        --&gt;
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset="utf-8" /&gt; &lt;meta name="format-detection" content="telephone=no" /&gt; 
+            &lt;!-- WARNING: for iOS 7, remove the
+                     width=device-width and height=device-height attributes. See
+                     https://issues.apache.org/jira/browse/CB-4323 --&gt;
+            &lt;meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,
+                                                                         width=device-width, height=device-height,
+                                                                         target-densitydpi=device-dpi" /&gt; 
+            &lt;link rel="stylesheet" type="text/css" href="css/index.css" /&gt;
+            &lt;title&gt;Hello World&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;script type="text/javascript"&gt;
+
+
+                document.addEventListener("deviceready", onDeviceReady, false);
+                function onDeviceReady() { // Now safe to use the Codova API
+
+
+                var ref = window.open('https://www.coll.mpg.de/bib/testurl',
+                '_blank', 'location=no'); // ref.addEventListener('loadstart',
+                function() { alert(event.url); }); }
+            &lt;/script&gt;
+            &lt;div class="app"&gt;
+                &lt;h1&gt;Apache Cordova&lt;/h1&gt;
+                &lt;div id="deviceready" class="blink"&gt;
+                    &lt;p class="event listening"&gt;Connecting to Device&lt;/p&gt;
+                    &lt;p class="event received"&gt;Device is Ready&lt;/p&gt;
+
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;script src="http://code.jquery.com/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="cordova.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript" src="js/index.js"&gt;&lt;/script&gt;
+            &lt;script type="text/javascript"&gt;
+                app.initialize();
+            &lt;/script&gt;
+
+        &lt;/body&gt;
+    &lt;/html&gt;
+&lt;/pre&gt;
+</code></pre>
+
+<p>Add icons/splash screen:
+see <em>platforms/android/res</em> and Cordova Docs.</p>
+
+<h1>
+<a name="links" class="anchor" href="#links"><span class="octicon octicon-link"></span></a>Links</h1>
+
+<p><a href="http://wiki.ubuntuusers.de/Android_SDK">Linux SDK setup</a></p>
+
+<p><a href="http://cordova.apache.org/docs/en/3.4.0/guide_cli_index.md.html">Cordova CLI Docs</a></p>
         </section>
 
         <aside id="sidebar">
